@@ -9,7 +9,7 @@ class Application extends React.Component {
   constructor() {
     super();
 
-    this.state = {subreddits: ['all', 'pics', 'gifs'], posts: []};
+    this.state = {subreddits: ['all', 'pics', 'gifs', 'tifu'], posts: []};
     this.handleSubredditSelect = this.handleSubredditSelect.bind(this);
     this.handleSubredditAdd = this.handleSubredditAdd.bind(this);
   }
@@ -29,7 +29,7 @@ class Application extends React.Component {
 
   handleSubredditSelect(subreddit) {
     fetch('https://www.reddit.com/r/'+subreddit+'.json')
-      .then(response => response.json())
+      .then(response => response.status == 200 ? response.json() : [])
       .then(data => this.setState({posts: data.data.children}));
   }
 

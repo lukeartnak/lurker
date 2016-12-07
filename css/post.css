@@ -8,3 +8,7 @@
   padding: 15px;
   border-bottom: 1px solid #ddd;
 }
+
+.post-text {
+  font-size: 2rem;
+}
