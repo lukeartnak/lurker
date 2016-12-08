@@ -1,0 +1,46 @@
+.modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, .5);
+}
+
+.modal-header {
+  font-size: 2rem;
+}
+
+.modal-body {
+  padding: 10px 0;
+}
+
+.modal {
+  padding: 20px;
+  background: #fff;
+  box-shadow: 2px 2px 5px rgba(0,0,0,.15);
+
+  input {
+
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    padding: 5px;
+    width: 20rem;
+
+  }
+
+  button {
+
+    border: 1px solid #ddd;
+    padding: 5px;
+    margin-right: 5px;
+    width: 5rem;
+    font-size: 1rem;
+    background: #fff;
+
+  }
+
+}

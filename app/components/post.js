@@ -1,39 +1,49 @@
 import React from 'react';
-import decode from 'decode-html';
+import moment from 'moment';
+
+import Comment from 'components/comment';
 
 export default class Post extends React.Component {
 
   constructor() {
     super();
 
-    this.state = {showText: false};
-    this.toggleText = this.toggleText.bind(this);
-    this.getText = this.getText.bind(this);
+    this.state = {expanded: false};
+    this.handleToggleComments = this.handleToggleComments.bind(this);
   }
 
   render() {
-    return this.state.showText ?
-    (
+
+    let score = this.props.score.toLocaleString();
+    let time = moment.utc(this.props.created_utc*1000).fromNow();
+    let comments = this.props.num_comments + ' comments';
+
+    return (
       <div className="post">
-        <span className="post-text" onClick={this.toggleText}>{this.props.title}</span>
-        <div dangerouslySetInnerHTML={{__html: this.getText()}}></div>
+        <div className="post-header">
+          <span className="post-title" onClick={this.toggleExpanded}>{this.props.title}</span><br />
+          <span className="post-meta">{score} · {this.props.author} · {time} · </span>
+          <span className="post-show" onClick={this.handleToggleComments}>{comments + (this.state.expanded ? ' (hide)' : ' (show)')}</span>
+        </div>
+        {this.state.comments ? (
+          <div className="post-comments" hidden={!this.state.expanded}>
+            {this.state.comments.map(comment => <Comment level={1} key={comment.data.id} {...comment.data} />)}
+          </div>
+        ) : null}
       </div>
     )
-    :
-    (
-      <div className="post">
-        <span onClick={this.toggleText}>{this.props.title}</span>
-      </div>
 
-    )
   }
 
-  toggleText() {
-    this.setState({showText: !this.state.showText});
-  }
+  handleToggleComments() {
+    if (!this.state.comments) {
+      fetch('https://www.reddit.com/comments/' + this.props.id + '/.json')
+        .then(response => response.json())
+        .then(data => this.setState({comments: data[1].data.children.slice(0, 10), expanded: !this.state.expanded}))
+    } else {
+      this.setState({expanded: !this.state.expanded})
+    }
 
-  getText() {
-    return decode(this.props.text);
   }
 
 }

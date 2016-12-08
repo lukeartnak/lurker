@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Subreddit from 'components/subreddit';
-import SubredditInput from 'components/subreddit-input';
 
 export default class SubredditList extends React.Component {
 
@@ -12,12 +11,12 @@ export default class SubredditList extends React.Component {
   render() {
     return (
       <ul className="subreddit-list">
+        <li className="subreddit" onClick={this.props.onSubredditPrompt}><i className="fa fa-plus"></i></li>
         {this.props.subreddits.map(subreddit => <Subreddit
           key={subreddit}
           name={subreddit}
           onSelect={this.props.onSubredditSelect.bind(this, subreddit)}
           />)}
-        <SubredditInput onSubmit={this.props.onSubredditAdd} />
       </ul>
     )
   }

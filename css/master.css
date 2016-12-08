@@ -8,23 +8,11 @@ body {
 }
 
 header {
+  font-size: 1.5rem;
   padding: 15px;
   border-bottom: 1px solid #ddd;
 }
 
-.lurker {
-  min-height: 100vh;
-  display: flex;
-
-  .subreddit-list {
-    flex-basis: 250px;
-  }
-
-  .post-list {
-    flex: 1;
-  }
-
-}
-
 @import "subreddit.css";
 @import "post.css";
+@import "modal.css";

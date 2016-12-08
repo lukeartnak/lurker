@@ -5,10 +5,38 @@
 }
 
 .post {
-  padding: 15px;
+  padding: 10px;
   border-bottom: 1px solid #ddd;
 }
 
-.post-text {
-  font-size: 2rem;
+.post-meta {
+  font-size: .75rem;
+}
+
+.post-show {
+
+  font-size: .75rem;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+}
+
+.post-comments {
+  font-size: .7rem;
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top: 1px solid #ddd;
+}
+
+.post-comment {
+  padding-left: 10px;
+  border-left: 1px solid #ddd;
+}
+
+.comment-text {
+  font-size: .8rem;
+  margin-top: 0;
 }

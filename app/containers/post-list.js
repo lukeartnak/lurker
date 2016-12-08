@@ -13,8 +13,7 @@ export default class PostList extends React.Component {
       <ul className="post-list">
         {this.props.posts.map(post => <Post
           key={post.data.id}
-          title={post.data.title}
-          text={post.data.selftext_html}
+          {...post.data}
           />)}
       </ul>
     )
