@@ -5,16 +5,18 @@ import moment from 'moment';
 export default class Comment extends React.Component {
 
   render() {
-
+    console.log(this.props);
     let score = this.props.score.toLocaleString();
     let time = moment.utc(this.props.created_utc*1000).fromNow();
     let replies = this.props.replies.data;
 
     return (
       <div className="post-comment">
-        <span>{score} · {this.props.author} · {time}</span>
+        <span className="comment-header">
+        <span className={'comment-author' + (this.props.author == this.props.postAuthor ? ' submitter' : '')}>{this.props.author}</span> · {score} · {time}
+        </span>
         <div className="comment-text" dangerouslySetInnerHTML={{__html: decode(this.props.body_html)}}></div>
-        {replies && this.props.level < 5 ? replies.children.map(reply => <Comment key={reply.data.id} level={this.props.level+1} {...reply.data} />) : null}
+        {replies ? replies.children.filter(child => !!child.data.body).map(reply => <Comment key={reply.data.id} postAuthor={this.props.postAuthor} {...reply.data} />) : null}
       </div>
     )
   }

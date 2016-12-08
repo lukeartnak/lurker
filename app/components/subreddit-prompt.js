@@ -22,8 +22,8 @@ export default class SubredditPrompt extends React.Component {
             <input className="modal-input" type="text" onChange={this.handleChange} defaultValue={this.state.text} />
           </div>
           <div className="modal-footer">
-            <button type="button" onClick={this.handleSubmit}>Add</button>
             <button type="button" onClick={this.handleCancel}>Cancel</button>
+            <button type="button" onClick={this.handleSubmit}>Add</button>
           </div>
 
         </div>

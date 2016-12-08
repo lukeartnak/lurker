@@ -1,3 +1,7 @@
+@import "subreddit.css";
+@import "post.css";
+@import "modal.css";
+
 html {
   font-size: 16px;
 }
@@ -12,7 +16,3 @@ header {
   padding: 15px;
   border-bottom: 1px solid #ddd;
 }
-
-@import "subreddit.css";
-@import "post.css";
-@import "modal.css";

@@ -32,6 +32,6 @@ module.exports = {
     new ExtractTextPlugin('style.css')
   ],
   postcss: function() {
-    return [require('precss'), require('autoprefixer'), require('cssnano')]
+    return [require('postcss-import'), require('precss'), require('autoprefixer'), require('cssnano')]
   }
 }

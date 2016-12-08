@@ -5,8 +5,16 @@
 }
 
 .post {
-  padding: 10px;
   border-bottom: 1px solid #ddd;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+}
+
+.stickied .post-header {
+  background: #E8F5E9;
 }
 
 .post-meta {
@@ -24,11 +32,24 @@
 
 }
 
+.post-info {
+  padding: 10px;
+  flex: 1;
+}
+
+.post-action {
+  margin-right: 10px;
+  a {
+    font-size: 2rem;
+    text-decoration: none;
+    color: #000;
+  }
+}
+
 .post-comments {
-  font-size: .7rem;
-  margin-top: 5px;
-  padding-top: 5px;
-  border-top: 1px solid #ddd;
+  padding-left: 10px;
+  width: 90%;
+  max-width: 1024px;
 }
 
 .post-comment {
@@ -36,7 +57,34 @@
   border-left: 1px solid #ddd;
 }
 
+.comment-header {
+  font-size: .75rem;
+  font-family: Lato, sans-serif;
+  font-weight: 900;
+  color: #333;
+  text-transform: uppercase;
+}
+
+.comment-author.submitter {
+  color: blue;
+}
+
 .comment-text {
-  font-size: .8rem;
+  font-size: .9rem;
   margin-top: 0;
+  .md {
+    > p {
+      margin-top: 0;
+    }
+    blockquote {
+      margin-left: 10px;
+      padding: 5px;
+      border-left: 5px solid #eee;
+      color: #555;
+      p {
+        margin: 2px 0;
+      }
+    }
+  }
+
 }
