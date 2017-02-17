@@ -1,2 +1,0 @@
-# lurker
-barebones reddit client
