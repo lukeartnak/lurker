@@ -1,45 +1,26 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
-import React, { Component } from 'react';
+import React from 'react';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
 import {
-  AppRegistry,
-  StyleSheet,
-  StatusBar,
-  DrawerLayoutAndroid,
-  ScrollView,
-  ToolbarAndroid,
-  Text,
-  ListView,
-  View
+  AppRegistry, StyleSheet,
+  DrawerLayoutAndroid, StatusBar, ToolbarAndroid
 } from 'react-native';
+
+import reducer from './store/reducers';
 
 import hamburger from './icons/ic_menu_white_24dp.png';
 
-export default class Lurker extends Component {
+import PostList from './components/post-list';
+
+class Application extends React.Component {
 
   constructor() {
 
     super();
 
-    const ds = new ListView.DataSource({rowHasChanged: (a, b) => a !== b});
-
-    this.state = {posts: ds.cloneWithRows(['Hello World'])};
-
   }
 
   render() {
-
-    let navigationView = (
-      <ScrollView>
-        <View style = {{height:100, backgroundColor: '#333', justifyContent: 'center'}}>
-           <Text style = {{height:25, color:'white', paddingLeft: 25}}>Welcome To ReactNative</Text>
-        </View>
-      </ScrollView>
-    )
 
     return (
 
@@ -47,7 +28,7 @@ export default class Lurker extends Component {
 
         drawerWidth={300}
         drawerPosition={DrawerLayoutAndroid.positions.Left}
-        renderNavigationView={() => navigationView}
+        renderNavigationView={() => {}}
         ref="drawer">
 
         <StatusBar
@@ -62,15 +43,7 @@ export default class Lurker extends Component {
           onIconClicked={() => this.refs['drawer'].openDrawer()}
         />
 
-        <ScrollView>
-
-          <ListView
-            dataSource={this.state.posts}
-            renderRow={post => <Text>{post}</Text>} />
-
-        </ScrollView>
-
-
+        <PostList />
 
       </DrawerLayoutAndroid>
 
@@ -82,13 +55,32 @@ export default class Lurker extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#F5FCFF',
+    flex: 1
   },
   toolbar: {
     backgroundColor: '#2a2a2a',
     height: 56
   }
 });
+
+export default class Lurker extends React.Component {
+
+  render() {
+
+    let store = createStore(reducer);
+
+    return (
+
+      <Provider store={store}>
+
+        <Application />
+
+      </Provider>
+
+    )
+
+  }
+
+}
 
 AppRegistry.registerComponent('lurker', () => Lurker);
