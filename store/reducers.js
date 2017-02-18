@@ -1,16 +1,34 @@
 import {combineReducers} from 'redux';
 
-function posts(posts = {}, action) {
+import {SELECT_SUBREDDIT, REQUEST_POSTS, RECEIVE_POSTS} from './actions';
 
-  switch(action.type) {
+function selectedSubreddit(state = 'all', action) {
 
-    case 'RECEIVE_POSTS':
-      return {...posts, [action.subreddit]: action.posts}
+  switch (action.type) {
+
+    case SELECT_SUBREDDIT:
+      return action.subreddit
+    default:
+      return state
 
   }
 
-  return posts;
+}
+
+function subreddits(state = {}, action) {
+
+  switch (action.type) {
+
+    case REQUEST_POSTS:
+      return {...state, [action.subreddit]: {fetching: true, posts: []}}
+    case RECEIVE_POSTS:
+      return {...state, [action.subreddit]: {fetching: false, posts: action.posts}}
+
+    default:
+      return state
+
+  }
 
 }
 
-export default combineReducers({posts});
+export default combineReducers({subreddits, selectedSubreddit});

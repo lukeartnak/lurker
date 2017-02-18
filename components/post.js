@@ -8,14 +8,16 @@ export default class Post extends React.Component {
 
     return (
 
-      <TouchableNativeFeedback onPress={() => Linking.openURL(this.props.url).catch(err => console.error('An error occurred', err))}>
+      <TouchableNativeFeedback>
 
         <View style={styles.post}>
+
+          <Text>{this.props.score}</Text>
 
           <Text style={styles.title}>{this.props.title}</Text>
 
           <Text style={styles.meta}>
-            {this.props.num_comments} Comments &middot; {this.props.author} &middot; {this.props.created_utc} &middot; {this.props.subreddit}
+            {this.props.comments} Comments &middot; {this.props.author} &middot; {this.props.posted} &middot; {this.props.subreddit}
           </Text>
 
         </View>
