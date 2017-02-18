@@ -6,6 +6,7 @@ import {fetchPosts, selectSubreddit} from '../store/actions';
 
 import MenuIcon from '../icons/menu-icon.png';
 import PostList from './post-list';
+import SubredditList from './subreddit-list';
 
 class Application extends React.Component {
 
@@ -17,7 +18,7 @@ class Application extends React.Component {
 
         drawerWidth={300}
         drawerPosition={DrawerLayoutAndroid.positions.Left}
-        renderNavigationView={() => {}}
+        renderNavigationView={() => <SubredditList />}
         ref="drawer">
 
         <StatusBar

@@ -31,4 +31,15 @@ function subreddits(state = {}, action) {
 
 }
 
-export default combineReducers({subreddits, selectedSubreddit});
+function subscriptions(state = ['all', 'popular', 'videos', 'gifs', 'pics'], action) {
+
+  switch (action.type) {
+
+    default:
+      return state
+
+  }
+
+}
+
+export default combineReducers({subscriptions, subreddits, selectedSubreddit});
