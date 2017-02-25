@@ -5,8 +5,9 @@ import {fetchPosts} from '../store/actions';
 
 import {StyleSheet, ScrollView, ListView, View, TouchableNativeFeedback, Image, Text} from 'react-native';
 
-import DropdownIcon from '../icons.dropdown-icon.png';
-import ReorderIcon from '../icons.reorder-icon.png';
+import DrawerHeader from '../icons/drawer-header.jpg';
+import DropdownIcon from '../icons/dropdown-icon.png';
+import ReorderIcon from '../icons/reorder-icon.png';
 
 class SubredditList extends React.Component {
 
@@ -24,6 +25,16 @@ class SubredditList extends React.Component {
 
       <ScrollView>
 
+        <Image style={styles.drawerHeader} source={DrawerHeader}>
+
+          <View style={styles.headerTextContainer}>
+
+            <Text style={styles.headerText}>Lurker for Reddit</Text>
+
+          </View>
+
+        </Image>
+
         <View style={styles.container}>
 
           <Image style={styles.icon} source={DropdownIcon} />
@@ -36,7 +47,7 @@ class SubredditList extends React.Component {
           dataSource={this.ds.cloneWithRows(this.props.subreddits)}
           renderRow={subreddit => (
 
-            <TouchableNativeFeedback onPress={() => this.props.fetchPosts(subreddit)}>
+            <TouchableNativeFeedback onPress={this.selectSubreddit.bind(this, subreddit)}>
 
               <View style={styles.container}>
 
@@ -58,6 +69,13 @@ class SubredditList extends React.Component {
 
   }
 
+  selectSubreddit(subreddit) {
+
+    this.props.fetchPosts(subreddit);
+    this.props.closeDrawer();
+
+  }
+
 }
 
 const styles = StyleSheet.create({
@@ -67,14 +85,26 @@ const styles = StyleSheet.create({
     height: 48,
     marginLeft: 16
   },
+  drawerHeader: {
+    justifyContent: 'flex-end',
+    height: 164
+  },
+  headerTextContainer: {
+    padding: 16
+  },
+  headerText: {
+    color: '#fff',
+    fontWeight: '700',
+    fontSize: 18
+  },
   icon: {
     height: 24,
     width: 24
   },
   header: {
     paddingLeft: 32,
-    fontWeight: '500',
-    color: '#000'
+    color: '#000',
+    fontSize: 18
   },
   subreddit: {
     paddingLeft: 32,

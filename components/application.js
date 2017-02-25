@@ -18,7 +18,7 @@ class Application extends React.Component {
 
         drawerWidth={300}
         drawerPosition={DrawerLayoutAndroid.positions.Left}
-        renderNavigationView={() => <SubredditList />}
+        renderNavigationView={() => <SubredditList closeDrawer={() => this.refs['drawer'].closeDrawer()} />}
         ref="drawer">
 
         <StatusBar
@@ -44,10 +44,6 @@ class Application extends React.Component {
   componentDidMount() {
 
     this.props.fetchPosts('all');
-
-    setTimeout(() => {
-      this.props.fetchPosts('popular');
-    }, 3000)
 
   }
 

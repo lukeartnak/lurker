@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {StyleSheet, ScrollView, ListView, View, ActivityIndicator} from 'react-native';
 
-import Post from './post';
+import PostHeader from './post-header';
 
 class PostList extends React.Component {
 
@@ -35,7 +35,7 @@ class PostList extends React.Component {
         <ListView
           enableEmptySections={true}
           dataSource={this.ds.cloneWithRows(this.props.posts)}
-          renderRow={post => <Post {...post} /> }
+          renderRow={post => <PostHeader {...post} /> }
           renderSeparator={(_, id) => <View key={id} style={styles.separator} />}
         />
 

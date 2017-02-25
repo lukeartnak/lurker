@@ -30,7 +30,7 @@ export function fetchPosts(subreddit) {
   return dispatch => {
     dispatch(selectSubreddit(subreddit));
     dispatch(requestPosts(subreddit));
-    return axios.get('https://www.reddit.com/r/all.json')
+    return axios.get(`https://www.reddit.com/r/${subreddit}.json`)
       .then(json => json.data.data.children.map(formatPost))
       .then(posts => dispatch(receivePosts(subreddit, posts)))
 
